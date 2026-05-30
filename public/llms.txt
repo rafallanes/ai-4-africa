@@ -1,0 +1,12 @@
+# AI 4 Africa
+
+> Connecting African schools, volunteer ambassadors, and companies to bring AI education to every classroom across Africa.
+
+AI 4 Africa is a non-profit platform that matches schools needing AI literacy training with vetted volunteer ambassadors and corporate sponsors who fund the programs.
+
+## Pages
+
+- [Home](/): Mission overview, impact stats, and how the platform works.
+- [Active Projects](/proyectos): Browse schools currently seeking ambassadors and sponsors.
+- [Register a School](/form/escuela): Application form for African schools to join the network.
+- [Become an Ambassador](/form/embajador): Application form for AI volunteers.

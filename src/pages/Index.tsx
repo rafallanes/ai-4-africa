@@ -3,13 +3,21 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { GraduationCap, Heart, Users, Target } from "lucide-react";
 import heroImage from "@/assets/hero-classroom.jpg";
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title="AI 4 Africa — AI Education for African Schools"
+        description="Connect African schools with volunteer ambassadors and corporate sponsors to bring hands-on AI education to every classroom."
+        path="/"
+      />
       <Navigation />
+      <main className="flex-1">
+      
       
       {/* Hero Section */}
       <section className="relative overflow-hidden">
@@ -130,7 +138,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-
+      </main>
       <Footer />
     </div>
   );

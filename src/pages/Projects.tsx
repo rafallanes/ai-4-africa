@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -10,6 +11,11 @@ import { Link } from "react-router-dom";
 const Projects = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title="Active AI Education Projects — AI 4 Africa"
+        description="Browse African schools currently seeking volunteer ambassadors and corporate sponsors for AI training programs."
+        path="/proyectos"
+      />
       <Navigation />
       
       <main className="flex-1 container mx-auto px-4 py-12">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,8 +53,29 @@ const ProjectDetail = () => {
     navigate("/proyectos");
   };
 
+  const seoTitle = `${project.school.name} — AI Education Project | AI 4 Africa`;
+  const seoDescription = `Support ${project.school.name} in ${project.school.city}, ${project.school.country}: AI training for ${project.school.studentCount} students. Status: ${project.status}.`;
+
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title={seoTitle.slice(0, 60)}
+        description={seoDescription.slice(0, 160)}
+        path={`/proyectos/${project.id}`}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: `AI Education Project at ${project.school.name}`,
+          description: seoDescription,
+          about: {
+            "@type": "EducationalOrganization",
+            name: project.school.name,
+            address: `${project.school.city}, ${project.school.country}`,
+          },
+          publisher: { "@type": "Organization", name: "AI 4 Africa" },
+        }}
+      />
       <Navigation />
       
       <main className="flex-1 container mx-auto px-4 py-12">
@@ -66,7 +88,7 @@ const ProjectDetail = () => {
             <CardHeader>
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                 <div className="flex-1">
-                  <CardTitle className="text-3xl mb-3">{project.school.name}</CardTitle>
+                  <h1 className="text-3xl font-semibold leading-none tracking-tight mb-3">{project.school.name}</h1>
                   <div className="flex flex-wrap gap-3 text-muted-foreground">
                     <div className="flex items-center gap-1">
                       <MapPin className="h-4 w-4" />
@@ -89,7 +111,7 @@ const ProjectDetail = () => {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold mb-3">School Details</h3>
+                  <h2 className="text-lg font-semibold mb-3">School Details</h2>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Training Language:</span>
@@ -109,7 +131,7 @@ const ProjectDetail = () => {
                 <div className="p-4 bg-primary/5 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <DollarSign className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Required Funding</h3>
+                    <h2 className="text-lg font-semibold">Required Funding</h2>
                   </div>
                   <p className="text-3xl font-bold text-primary">
                     ${project.school.requiredAmount.toLocaleString()}
@@ -122,7 +144,7 @@ const ProjectDetail = () => {
 
               {project.ambassador && (
                 <div>
-                  <h3 className="font-semibold mb-3">Ambassador</h3>
+                  <h2 className="text-lg font-semibold mb-3">Ambassador</h2>
                   <div className="p-4 bg-accent rounded-lg">
                     <p className="font-medium mb-1">{project.ambassador.name}</p>
                     <p className="text-sm text-muted-foreground mb-2">{project.ambassador.country}</p>
@@ -143,7 +165,7 @@ const ProjectDetail = () => {
 
               {project.sponsoringCompany && (
                 <div>
-                  <h3 className="font-semibold mb-3">Sponsored By</h3>
+                  <h2 className="text-lg font-semibold mb-3">Sponsored By</h2>
                   <div className="p-4 bg-success-light rounded-lg flex items-center gap-3">
                     <Building2 className="h-8 w-8 text-success" />
                     <div>
@@ -158,7 +180,7 @@ const ProjectDetail = () => {
                 <>
                   {project.testimonials && (
                     <div>
-                      <h3 className="font-semibold mb-3">Impact Story</h3>
+                      <h2 className="text-lg font-semibold mb-3">Impact Story</h2>
                       <div className="p-4 bg-muted rounded-lg">
                         <p className="text-muted-foreground italic">"{project.testimonials}"</p>
                         {project.finalStudentCount && (
@@ -172,7 +194,7 @@ const ProjectDetail = () => {
 
                   {project.comments && (
                     <div>
-                      <h3 className="font-semibold mb-3">School Feedback</h3>
+                      <h2 className="text-lg font-semibold mb-3">School Feedback</h2>
                       <div className="p-4 bg-accent rounded-lg">
                         <p className="text-sm">{project.comments}</p>
                       </div>
