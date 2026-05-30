@@ -131,7 +131,7 @@ const ProjectDetail = () => {
                 <div className="p-4 bg-primary/5 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <DollarSign className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Required Funding</h2>
+                    <h2 className="text-lg font-semibold">Required Funding</h2>
                   </div>
                   <p className="text-3xl font-bold text-primary">
                     ${project.school.requiredAmount.toLocaleString()}
