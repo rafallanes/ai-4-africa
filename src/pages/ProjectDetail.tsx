@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,8 +53,29 @@ const ProjectDetail = () => {
     navigate("/proyectos");
   };
 
+  const seoTitle = `${project.school.name} — AI Education Project | AI 4 Africa`;
+  const seoDescription = `Support ${project.school.name} in ${project.school.city}, ${project.school.country}: AI training for ${project.school.studentCount} students. Status: ${project.status}.`;
+
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title={seoTitle.slice(0, 60)}
+        description={seoDescription.slice(0, 160)}
+        path={`/proyectos/${project.id}`}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: `AI Education Project at ${project.school.name}`,
+          description: seoDescription,
+          about: {
+            "@type": "EducationalOrganization",
+            name: project.school.name,
+            address: `${project.school.city}, ${project.school.country}`,
+          },
+          publisher: { "@type": "Organization", name: "AI 4 Africa" },
+        }}
+      />
       <Navigation />
       
       <main className="flex-1 container mx-auto px-4 py-12">
@@ -66,7 +88,7 @@ const ProjectDetail = () => {
             <CardHeader>
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                 <div className="flex-1">
-                  <CardTitle className="text-3xl mb-3">{project.school.name}</CardTitle>
+                  <h1 className="text-3xl font-semibold leading-none tracking-tight mb-3">{project.school.name}</h1>
                   <div className="flex flex-wrap gap-3 text-muted-foreground">
                     <div className="flex items-center gap-1">
                       <MapPin className="h-4 w-4" />
