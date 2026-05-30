@@ -35,7 +35,11 @@ const SchoolForm = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+      <SEO
+        title="Register Your School — AI 4 Africa"
+        description="Apply to join AI 4 Africa and bring volunteer-led AI literacy training to your students."
+        path="/form/escuela"
+      />
       <main className="flex-1 container mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">

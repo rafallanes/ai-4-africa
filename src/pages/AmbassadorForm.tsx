@@ -35,6 +35,11 @@ const AmbassadorForm = () => {
     <div className="min-h-screen flex flex-col">
       <Navigation />
       
+      <SEO
+        title="Become an AI Ambassador — AI 4 Africa"
+        description="Volunteer your AI expertise to train students at schools across Africa. Apply to join our ambassador network."
+        path="/form/embajador"
+      />
       <main className="flex-1 container mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
