@@ -111,7 +111,7 @@ const ProjectDetail = () => {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold mb-3">School Details</h3>
+                  <h2 className="text-lg font-semibold mb-3">School Details</h2>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Training Language:</span>
@@ -131,7 +131,7 @@ const ProjectDetail = () => {
                 <div className="p-4 bg-primary/5 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <DollarSign className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Required Funding</h3>
+                    <h3 className="font-semibold">Required Funding</h2>
                   </div>
                   <p className="text-3xl font-bold text-primary">
                     ${project.school.requiredAmount.toLocaleString()}
@@ -144,7 +144,7 @@ const ProjectDetail = () => {
 
               {project.ambassador && (
                 <div>
-                  <h3 className="font-semibold mb-3">Ambassador</h3>
+                  <h2 className="text-lg font-semibold mb-3">Ambassador</h2>
                   <div className="p-4 bg-accent rounded-lg">
                     <p className="font-medium mb-1">{project.ambassador.name}</p>
                     <p className="text-sm text-muted-foreground mb-2">{project.ambassador.country}</p>
@@ -165,7 +165,7 @@ const ProjectDetail = () => {
 
               {project.sponsoringCompany && (
                 <div>
-                  <h3 className="font-semibold mb-3">Sponsored By</h3>
+                  <h2 className="text-lg font-semibold mb-3">Sponsored By</h2>
                   <div className="p-4 bg-success-light rounded-lg flex items-center gap-3">
                     <Building2 className="h-8 w-8 text-success" />
                     <div>
@@ -180,7 +180,7 @@ const ProjectDetail = () => {
                 <>
                   {project.testimonials && (
                     <div>
-                      <h3 className="font-semibold mb-3">Impact Story</h3>
+                      <h2 className="text-lg font-semibold mb-3">Impact Story</h2>
                       <div className="p-4 bg-muted rounded-lg">
                         <p className="text-muted-foreground italic">"{project.testimonials}"</p>
                         {project.finalStudentCount && (
@@ -194,7 +194,7 @@ const ProjectDetail = () => {
 
                   {project.comments && (
                     <div>
-                      <h3 className="font-semibold mb-3">School Feedback</h3>
+                      <h2 className="text-lg font-semibold mb-3">School Feedback</h2>
                       <div className="p-4 bg-accent rounded-lg">
                         <p className="text-sm">{project.comments}</p>
                       </div>
