@@ -19,16 +19,29 @@ const AmbassadorForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
+    const fd = new FormData(e.currentTarget);
+    const { supabase } = await import("@/integrations/supabase/client");
+    const { error } = await supabase.from("ambassadors").insert({
+      name: String(fd.get("fullName")),
+      country: String(fd.get("country")),
+      email: String(fd.get("email")),
+      linkedin: String(fd.get("linkedin") ?? "") || null,
+      cv_url: String(fd.get("cvUrl") ?? "") || null,
+      expertise: String(fd.get("expertise")),
+      motivation: String(fd.get("motivation")),
+      availability: String(fd.get("availability") ?? "") || null,
+      languages: String(fd.get("languages") ?? "") || null,
+      validated: false,
+    });
+    setIsSubmitting(false);
+    if (error) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+      return;
+    }
     toast({
       title: "Application Submitted!",
       description: "Thank you for applying! We'll review your profile and contact you within 48 hours.",
     });
-
-    setIsSubmitting(false);
     navigate("/");
   };
 

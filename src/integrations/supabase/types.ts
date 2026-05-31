@@ -14,16 +14,242 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ambassadors: {
+        Row: {
+          availability: string | null
+          country: string
+          created_at: string
+          cv_url: string | null
+          email: string
+          expertise: string
+          id: string
+          languages: string | null
+          linkedin: string | null
+          motivation: string
+          name: string
+          updated_at: string
+          validated: boolean
+        }
+        Insert: {
+          availability?: string | null
+          country: string
+          created_at?: string
+          cv_url?: string | null
+          email: string
+          expertise: string
+          id?: string
+          languages?: string | null
+          linkedin?: string | null
+          motivation: string
+          name: string
+          updated_at?: string
+          validated?: boolean
+        }
+        Update: {
+          availability?: string | null
+          country?: string
+          created_at?: string
+          cv_url?: string | null
+          email?: string
+          expertise?: string
+          id?: string
+          languages?: string | null
+          linkedin?: string | null
+          motivation?: string
+          name?: string
+          updated_at?: string
+          validated?: boolean
+        }
+        Relationships: []
+      }
+      companies: {
+        Row: {
+          commitment: boolean
+          contact_email: string
+          contact_name: string
+          created_at: string
+          id: string
+          logo_url: string | null
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          commitment?: boolean
+          contact_email: string
+          contact_name: string
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          commitment?: boolean
+          contact_email?: string
+          contact_name?: string
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          ambassador_id: string | null
+          comments: string | null
+          created_at: string
+          final_student_count: number | null
+          id: string
+          media_urls: string[] | null
+          school_id: string
+          sponsoring_company_id: string | null
+          status: Database["public"]["Enums"]["project_status"]
+          testimonials: string | null
+          updated_at: string
+        }
+        Insert: {
+          ambassador_id?: string | null
+          comments?: string | null
+          created_at?: string
+          final_student_count?: number | null
+          id?: string
+          media_urls?: string[] | null
+          school_id: string
+          sponsoring_company_id?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          testimonials?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ambassador_id?: string | null
+          comments?: string | null
+          created_at?: string
+          final_student_count?: number | null
+          id?: string
+          media_urls?: string[] | null
+          school_id?: string
+          sponsoring_company_id?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          testimonials?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_ambassador_id_fkey"
+            columns: ["ambassador_id"]
+            isOneToOne: false
+            referencedRelation: "ambassadors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "projects_school_id_fkey"
+            columns: ["school_id"]
+            isOneToOne: false
+            referencedRelation: "schools"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "projects_sponsoring_company_id_fkey"
+            columns: ["sponsoring_company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      schools: {
+        Row: {
+          age_range: string
+          city: string
+          contact_email: string
+          contact_name: string
+          country: string
+          created_at: string
+          has_materials: boolean
+          id: string
+          name: string
+          preferred_dates: string | null
+          required_amount: number
+          student_count: number
+          training_language: string
+          updated_at: string
+          validated: boolean
+        }
+        Insert: {
+          age_range: string
+          city: string
+          contact_email: string
+          contact_name: string
+          country: string
+          created_at?: string
+          has_materials?: boolean
+          id?: string
+          name: string
+          preferred_dates?: string | null
+          required_amount?: number
+          student_count?: number
+          training_language: string
+          updated_at?: string
+          validated?: boolean
+        }
+        Update: {
+          age_range?: string
+          city?: string
+          contact_email?: string
+          contact_name?: string
+          country?: string
+          created_at?: string
+          has_materials?: boolean
+          id?: string
+          name?: string
+          preferred_dates?: string | null
+          required_amount?: number
+          student_count?: number
+          training_language?: string
+          updated_at?: string
+          validated?: boolean
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      project_status: "buscando" | "apadrinado" | "completado"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +376,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      project_status: ["buscando", "apadrinado", "completado"],
+    },
   },
 } as const

@@ -20,16 +20,34 @@ const SchoolForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    const fd = new FormData(e.currentTarget);
+    const materials = String(fd.get("materials") ?? "no");
 
-    // Simulate API call - In production, this would connect to Airtable
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const { supabase } = await import("@/integrations/supabase/client");
+    const { error } = await supabase.from("schools").insert({
+      name: String(fd.get("schoolName")),
+      city: String(fd.get("city")),
+      country: String(fd.get("country")),
+      student_count: Number(fd.get("studentCount") ?? 0),
+      age_range: String(fd.get("ageRange")),
+      training_language: String(fd.get("trainingLanguage") ?? ""),
+      has_materials: materials === "yes",
+      preferred_dates: String(fd.get("preferredDates") ?? ""),
+      required_amount: 0,
+      contact_name: String(fd.get("contactName")),
+      contact_email: String(fd.get("contactEmail")),
+      validated: false,
+    });
 
+    setIsSubmitting(false);
+    if (error) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+      return;
+    }
     toast({
       title: "Application Submitted!",
       description: "Your school has been registered. We'll review your application and contact you soon.",
     });
-
-    setIsSubmitting(false);
     navigate("/proyectos");
   };
 
@@ -89,23 +107,23 @@ const SchoolForm = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="trainingLanguage">Training Language *</Label>
-                  <Select required>
+                  <Select name="trainingLanguage" required defaultValue="English">
                     <SelectTrigger>
                       <SelectValue placeholder="Select language" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="english">English</SelectItem>
-                      <SelectItem value="french">French</SelectItem>
-                      <SelectItem value="spanish">Spanish</SelectItem>
-                      <SelectItem value="portuguese">Portuguese</SelectItem>
-                      <SelectItem value="swahili">Swahili</SelectItem>
+                      <SelectItem value="English">English</SelectItem>
+                      <SelectItem value="French">French</SelectItem>
+                      <SelectItem value="Spanish">Spanish</SelectItem>
+                      <SelectItem value="Portuguese">Portuguese</SelectItem>
+                      <SelectItem value="Swahili">Swahili</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="materials">Do you have computers/tablets? *</Label>
-                  <Select required>
+                  <Select name="materials" required defaultValue="no">
                     <SelectTrigger>
                       <SelectValue placeholder="Select option" />
                     </SelectTrigger>
