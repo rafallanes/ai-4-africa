@@ -9,6 +9,7 @@ import { MapPin, Users, Calendar, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
+import { useT } from "@/i18n/LanguageProvider";
 
 type Row = Tables<"projects"> & {
   schools: Tables<"schools"> | null;
@@ -17,6 +18,7 @@ type Row = Tables<"projects"> & {
 };
 
 const Projects = () => {
+  const { t } = useT();
   const [projects, setProjects] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,13 +44,11 @@ const Projects = () => {
       <main className="flex-1 container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Active Projects</h1>
-            <p className="text-lg text-muted-foreground">
-              Discover schools seeking AI education and support their journey
-            </p>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">{t("projects.title")}</h1>
+            <p className="text-lg text-muted-foreground">{t("projects.subtitle")}</p>
           </div>
 
-          {loading && <p className="text-center text-muted-foreground">Loading...</p>}
+          {loading && <p className="text-center text-muted-foreground">{t("projects.loading")}</p>}
 
           <div className="space-y-6">
             {projects.map((project) => {
@@ -62,7 +62,7 @@ const Projects = () => {
                         <CardTitle className="text-2xl mb-2">{school.name}</CardTitle>
                         <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-3">
                           <div className="flex items-center gap-1"><MapPin className="h-4 w-4" />{school.city}, {school.country}</div>
-                          <div className="flex items-center gap-1"><Users className="h-4 w-4" />{school.student_count} students</div>
+                          <div className="flex items-center gap-1"><Users className="h-4 w-4" />{school.student_count} {t("projects.students")}</div>
                           <div className="flex items-center gap-1"><Calendar className="h-4 w-4" />{school.preferred_dates}</div>
                         </div>
                       </div>
@@ -71,40 +71,40 @@ const Projects = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                      <div><p className="text-sm font-medium text-muted-foreground mb-1">Training Language</p><p className="font-medium">{school.training_language}</p></div>
-                      <div><p className="text-sm font-medium text-muted-foreground mb-1">Age Range</p><p className="font-medium">{school.age_range} years</p></div>
-                      <div><p className="text-sm font-medium text-muted-foreground mb-1">Materials Available</p><p className="font-medium">{school.has_materials ? "Yes" : "Need support"}</p></div>
-                      <div><p className="text-sm font-medium text-muted-foreground mb-1 flex items-center gap-1"><DollarSign className="h-4 w-4" />Required Amount</p><p className="font-medium">${Number(school.required_amount).toLocaleString()}</p></div>
+                      <div><p className="text-sm font-medium text-muted-foreground mb-1">{t("projects.trainingLanguage")}</p><p className="font-medium">{school.training_language}</p></div>
+                      <div><p className="text-sm font-medium text-muted-foreground mb-1">{t("projects.ageRange")}</p><p className="font-medium">{school.age_range} {t("projects.years")}</p></div>
+                      <div><p className="text-sm font-medium text-muted-foreground mb-1">{t("projects.materials")}</p><p className="font-medium">{school.has_materials ? t("projects.yes") : t("projects.needSupport")}</p></div>
+                      <div><p className="text-sm font-medium text-muted-foreground mb-1 flex items-center gap-1"><DollarSign className="h-4 w-4" />{t("projects.requiredAmount")}</p><p className="font-medium">${Number(school.required_amount).toLocaleString()}</p></div>
                     </div>
 
                     {project.ambassadors && (
                       <div className="mt-4 p-4 bg-accent rounded-lg">
-                        <p className="text-sm font-medium text-muted-foreground mb-1">Ambassador</p>
+                        <p className="text-sm font-medium text-muted-foreground mb-1">{t("projects.ambassador")}</p>
                         <p className="font-medium">{project.ambassadors.name}</p>
                       </div>
                     )}
 
                     {project.companies && (
                       <div className="mt-4 p-4 bg-success-light rounded-lg">
-                        <p className="text-sm font-medium text-muted-foreground mb-1">Sponsored by</p>
+                        <p className="text-sm font-medium text-muted-foreground mb-1">{t("projects.sponsoredBy")}</p>
                         <p className="font-medium">{project.companies.name}</p>
                       </div>
                     )}
 
                     {project.status === "completado" && project.testimonials && (
                       <div className="mt-4 p-4 bg-muted rounded-lg">
-                        <p className="text-sm font-medium mb-2">Impact Story</p>
+                        <p className="text-sm font-medium mb-2">{t("projects.impactStory")}</p>
                         <p className="text-sm text-muted-foreground italic">"{project.testimonials}"</p>
                       </div>
                     )}
 
                     <div className="mt-6 flex gap-3">
                       <Link to={`/proyectos/${project.id}`} className="flex-1">
-                        <Button variant="outline" className="w-full">View Details</Button>
+                        <Button variant="outline" className="w-full">{t("projects.viewDetails")}</Button>
                       </Link>
                       {project.status === "buscando" && (
                         <Link to={`/proyectos/${project.id}`} className="flex-1">
-                          <Button className="w-full">Sponsor This Project</Button>
+                          <Button className="w-full">{t("projects.sponsorThis")}</Button>
                         </Link>
                       )}
                     </div>
@@ -113,7 +113,7 @@ const Projects = () => {
               );
             })}
             {!loading && projects.length === 0 && (
-              <p className="text-center text-muted-foreground">No projects yet.</p>
+              <p className="text-center text-muted-foreground">{t("projects.empty")}</p>
             )}
           </div>
         </div>

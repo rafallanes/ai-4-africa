@@ -9,8 +9,10 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useT } from "@/i18n/LanguageProvider";
 
 const ResetPassword = () => {
+  const { t } = useT();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [busy, setBusy] = useState(false);
@@ -21,7 +23,7 @@ const ResetPassword = () => {
     const password = String(fd.get("password"));
     const confirm = String(fd.get("confirm"));
     if (password !== confirm) {
-      toast({ title: "Passwords don't match", variant: "destructive" });
+      toast({ title: t("reset.mismatch"), variant: "destructive" });
       return;
     }
     setBusy(true);
@@ -30,7 +32,7 @@ const ResetPassword = () => {
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } else {
-      toast({ title: "Password updated" });
+      toast({ title: t("reset.updated") });
       navigate("/admin");
     }
   };
@@ -43,21 +45,21 @@ const ResetPassword = () => {
         <div className="max-w-md mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle>Set a new password</CardTitle>
-              <CardDescription>Enter your new password below</CardDescription>
+              <CardTitle>{t("reset.title")}</CardTitle>
+              <CardDescription>{t("reset.desc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="password">New password</Label>
+                  <Label htmlFor="password">{t("reset.new")}</Label>
                   <Input id="password" name="password" type="password" required minLength={8} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="confirm">Confirm password</Label>
+                  <Label htmlFor="confirm">{t("reset.confirm")}</Label>
                   <Input id="confirm" name="confirm" type="password" required minLength={8} />
                 </div>
                 <Button type="submit" className="w-full" disabled={busy}>
-                  {busy ? "Updating..." : "Update password"}
+                  {busy ? t("reset.updating") : t("reset.update")}
                 </Button>
               </form>
             </CardContent>

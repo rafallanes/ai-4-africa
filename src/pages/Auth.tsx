@@ -12,8 +12,10 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { Shield } from "lucide-react";
+import { useT } from "@/i18n/LanguageProvider";
 
 const Auth = () => {
+  const { t } = useT();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, loading } = useAuth();
@@ -34,9 +36,9 @@ const Auth = () => {
     });
     setBusy(false);
     if (error) {
-      toast({ title: "Login failed", description: error.message, variant: "destructive" });
+      toast({ title: t("auth.loginFailed"), description: error.message, variant: "destructive" });
     } else {
-      toast({ title: "Welcome back!" });
+      toast({ title: t("auth.welcome") });
       navigate("/admin");
     }
   };
@@ -52,9 +54,9 @@ const Auth = () => {
     });
     setBusy(false);
     if (error) {
-      toast({ title: "Signup failed", description: error.message, variant: "destructive" });
+      toast({ title: t("auth.signupFailed"), description: error.message, variant: "destructive" });
     } else {
-      toast({ title: "Account created", description: "You can sign in now." });
+      toast({ title: t("auth.created"), description: t("auth.createdDesc") });
     }
   };
 
@@ -69,7 +71,7 @@ const Auth = () => {
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } else {
-      toast({ title: "Email sent", description: "Check your inbox to reset your password." });
+      toast({ title: t("auth.emailSent"), description: t("auth.emailSentDesc") });
       setForgotMode(false);
     }
   };
@@ -82,27 +84,27 @@ const Auth = () => {
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
             <Shield className="h-12 w-12 text-primary mx-auto mb-3" />
-            <h1 className="text-3xl font-bold">Admin Access</h1>
-            <p className="text-muted-foreground">Sign in to manage the platform</p>
+            <h1 className="text-3xl font-bold">{t("auth.title")}</h1>
+            <p className="text-muted-foreground">{t("auth.subtitle")}</p>
           </div>
 
           {forgotMode ? (
             <Card>
               <CardHeader>
-                <CardTitle>Reset password</CardTitle>
-                <CardDescription>We'll email you a reset link</CardDescription>
+                <CardTitle>{t("auth.reset")}</CardTitle>
+                <CardDescription>{t("auth.resetDesc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleForgot} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="femail">Email</Label>
+                    <Label htmlFor="femail">{t("auth.email")}</Label>
                     <Input id="femail" name="email" type="email" required />
                   </div>
                   <Button type="submit" className="w-full" disabled={busy}>
-                    {busy ? "Sending..." : "Send reset link"}
+                    {busy ? t("auth.sending") : t("auth.sendReset")}
                   </Button>
                   <Button type="button" variant="ghost" className="w-full" onClick={() => setForgotMode(false)}>
-                    Back to sign in
+                    {t("auth.backToSignIn")}
                   </Button>
                 </form>
               </CardContent>
@@ -110,26 +112,26 @@ const Auth = () => {
           ) : (
             <Tabs defaultValue="login">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Sign in</TabsTrigger>
-                <TabsTrigger value="signup">Sign up</TabsTrigger>
+                <TabsTrigger value="login">{t("auth.signIn")}</TabsTrigger>
+                <TabsTrigger value="signup">{t("auth.signUp")}</TabsTrigger>
               </TabsList>
               <TabsContent value="login">
                 <Card>
                   <CardContent className="pt-6">
                     <form onSubmit={handleLogin} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="lemail">Email</Label>
+                        <Label htmlFor="lemail">{t("auth.email")}</Label>
                         <Input id="lemail" name="email" type="email" required />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="lpassword">Password</Label>
+                        <Label htmlFor="lpassword">{t("auth.password")}</Label>
                         <Input id="lpassword" name="password" type="password" required />
                       </div>
                       <Button type="submit" className="w-full" disabled={busy}>
-                        {busy ? "Signing in..." : "Sign in"}
+                        {busy ? t("auth.signingIn") : t("auth.signIn")}
                       </Button>
                       <Button type="button" variant="link" className="w-full" onClick={() => setForgotMode(true)}>
-                        Forgot password?
+                        {t("auth.forgot")}
                       </Button>
                     </form>
                   </CardContent>
@@ -140,15 +142,15 @@ const Auth = () => {
                   <CardContent className="pt-6">
                     <form onSubmit={handleSignup} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="semail">Email</Label>
+                        <Label htmlFor="semail">{t("auth.email")}</Label>
                         <Input id="semail" name="email" type="email" required />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="spassword">Password</Label>
+                        <Label htmlFor="spassword">{t("auth.password")}</Label>
                         <Input id="spassword" name="password" type="password" required minLength={8} />
                       </div>
                       <Button type="submit" className="w-full" disabled={busy}>
-                        {busy ? "Creating..." : "Create account"}
+                        {busy ? t("auth.creating") : t("auth.create")}
                       </Button>
                     </form>
                   </CardContent>
@@ -158,7 +160,7 @@ const Auth = () => {
           )}
 
           <p className="text-center text-sm text-muted-foreground mt-6">
-            <Link to="/" className="hover:underline">← Back to home</Link>
+            <Link to="/" className="hover:underline">{t("auth.backHome")}</Link>
           </p>
         </div>
       </main>

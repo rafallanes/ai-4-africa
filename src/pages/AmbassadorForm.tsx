@@ -10,8 +10,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Users } from "lucide-react";
+import { useT } from "@/i18n/LanguageProvider";
 
 const AmbassadorForm = () => {
+  const { t } = useT();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,17 +40,13 @@ const AmbassadorForm = () => {
       toast({ title: "Error", description: error.message, variant: "destructive" });
       return;
     }
-    toast({
-      title: "Application Submitted!",
-      description: "Thank you for applying! We'll review your profile and contact you within 48 hours.",
-    });
+    toast({ title: t("amb.toast.title"), description: t("amb.toast.desc") });
     navigate("/");
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
       <SEO
         title="Become an AI Ambassador — AI 4 Africa"
         description="Volunteer your AI expertise to train students at schools across Africa. Apply to join our ambassador network."
@@ -58,95 +56,65 @@ const AmbassadorForm = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <Users className="h-16 w-16 text-primary mx-auto mb-4" />
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Become an Ambassador</h1>
-            <p className="text-muted-foreground">
-              Share your AI expertise and make a lasting impact in Africa
-            </p>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">{t("amb.title")}</h1>
+            <p className="text-muted-foreground">{t("amb.subtitle")}</p>
           </div>
 
           <Card className="shadow-impact">
             <CardHeader>
-              <CardTitle>Ambassador Application</CardTitle>
-              <CardDescription>
-                Tell us about yourself and why you want to volunteer
-              </CardDescription>
+              <CardTitle>{t("amb.cardTitle")}</CardTitle>
+              <CardDescription>{t("amb.cardDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name *</Label>
-                  <Input id="fullName" required placeholder="Your full name" />
+                  <Label htmlFor="fullName">{t("amb.fullName")}</Label>
+                  <Input id="fullName" name="fullName" required placeholder={t("amb.fullNamePh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="country">Country of Residence *</Label>
-                  <Input id="country" required placeholder="Where are you based?" />
+                  <Label htmlFor="country">{t("amb.country")}</Label>
+                  <Input id="country" name="country" required placeholder={t("amb.countryPh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input id="email" type="email" required placeholder="your.email@example.com" />
+                  <Label htmlFor="email">{t("amb.email")}</Label>
+                  <Input id="email" name="email" type="email" required placeholder={t("amb.emailPh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="linkedin">LinkedIn Profile URL</Label>
-                  <Input id="linkedin" type="url" placeholder="https://linkedin.com/in/yourprofile" />
+                  <Label htmlFor="linkedin">{t("amb.linkedin")}</Label>
+                  <Input id="linkedin" name="linkedin" type="url" placeholder={t("amb.linkedinPh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="cvUrl">CV/Resume URL *</Label>
-                  <Input 
-                    id="cvUrl" 
-                    type="url" 
-                    required 
-                    placeholder="Link to your CV (Google Drive, Dropbox, etc.)" 
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    Please share a link to your CV stored in Google Drive, Dropbox, or similar
-                  </p>
+                  <Label htmlFor="cvUrl">{t("amb.cv")}</Label>
+                  <Input id="cvUrl" name="cvUrl" type="url" required placeholder={t("amb.cvPh")} />
+                  <p className="text-xs text-muted-foreground">{t("amb.cvHint")}</p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="expertise">Your AI/Tech Expertise *</Label>
-                  <Textarea 
-                    id="expertise" 
-                    required
-                    placeholder="Briefly describe your background in AI, machine learning, or technology..."
-                    rows={4}
-                  />
+                  <Label htmlFor="expertise">{t("amb.expertise")}</Label>
+                  <Textarea id="expertise" name="expertise" required placeholder={t("amb.expertisePh")} rows={4} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="motivation">Why do you want to be an ambassador? *</Label>
-                  <Textarea 
-                    id="motivation" 
-                    required
-                    placeholder="Share your motivation for bringing AI education to Africa..."
-                    rows={6}
-                  />
+                  <Label htmlFor="motivation">{t("amb.motivation")}</Label>
+                  <Textarea id="motivation" name="motivation" required placeholder={t("amb.motivationPh")} rows={6} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="availability">Availability *</Label>
-                  <Textarea 
-                    id="availability" 
-                    required
-                    placeholder="When are you available? How much time can you commit? (e.g., 2 weeks in March 2025)"
-                    rows={3}
-                  />
+                  <Label htmlFor="availability">{t("amb.availability")}</Label>
+                  <Textarea id="availability" name="availability" required placeholder={t("amb.availabilityPh")} rows={3} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="languages">Languages You Speak *</Label>
-                  <Input 
-                    id="languages" 
-                    required 
-                    placeholder="e.g., English, French, Swahili" 
-                  />
+                  <Label htmlFor="languages">{t("amb.languages")}</Label>
+                  <Input id="languages" name="languages" required placeholder={t("amb.languagesPh")} />
                 </div>
 
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? "Submitting..." : "Submit Application"}
+                  {isSubmitting ? t("amb.submitting") : t("amb.submit")}
                 </Button>
               </form>
             </CardContent>

@@ -11,8 +11,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { GraduationCap } from "lucide-react";
+import { useT } from "@/i18n/LanguageProvider";
 
 const SchoolForm = () => {
+  const { t } = useT();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,10 +46,7 @@ const SchoolForm = () => {
       toast({ title: "Error", description: error.message, variant: "destructive" });
       return;
     }
-    toast({
-      title: "Application Submitted!",
-      description: "Your school has been registered. We'll review your application and contact you soon.",
-    });
+    toast({ title: t("school.toast.title"), description: t("school.toast.desc") });
     navigate("/proyectos");
   };
 
@@ -63,109 +62,97 @@ const SchoolForm = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <GraduationCap className="h-16 w-16 text-primary mx-auto mb-4" />
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Register Your School</h1>
-            <p className="text-muted-foreground">
-              Join our network and bring AI education to your students
-            </p>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">{t("school.title")}</h1>
+            <p className="text-muted-foreground">{t("school.subtitle")}</p>
           </div>
 
           <Card className="shadow-impact">
             <CardHeader>
-              <CardTitle>School Information</CardTitle>
-              <CardDescription>
-                Please provide details about your school and training needs
-              </CardDescription>
+              <CardTitle>{t("school.cardTitle")}</CardTitle>
+              <CardDescription>{t("school.cardDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="schoolName">School Name *</Label>
-                  <Input id="schoolName" required placeholder="Enter school name" />
+                  <Label htmlFor="schoolName">{t("school.name")}</Label>
+                  <Input id="schoolName" name="schoolName" required placeholder={t("school.namePh")} />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="city">City *</Label>
-                    <Input id="city" required placeholder="City" />
+                    <Label htmlFor="city">{t("school.city")}</Label>
+                    <Input id="city" name="city" required placeholder={t("school.cityPh")} />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="country">Country *</Label>
-                    <Input id="country" required placeholder="Country" />
+                    <Label htmlFor="country">{t("school.country")}</Label>
+                    <Input id="country" name="country" required placeholder={t("school.countryPh")} />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="studentCount">Number of Students *</Label>
-                    <Input id="studentCount" type="number" required placeholder="e.g., 250" />
+                    <Label htmlFor="studentCount">{t("school.studentCount")}</Label>
+                    <Input id="studentCount" name="studentCount" type="number" required placeholder={t("school.studentCountPh")} />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="ageRange">Student Age Range *</Label>
-                    <Input id="ageRange" required placeholder="e.g., 12-16" />
+                    <Label htmlFor="ageRange">{t("school.ageRange")}</Label>
+                    <Input id="ageRange" name="ageRange" required placeholder={t("school.ageRangePh")} />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="trainingLanguage">Training Language *</Label>
+                  <Label htmlFor="trainingLanguage">{t("school.trainingLanguage")}</Label>
                   <Select name="trainingLanguage" required defaultValue="English">
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select language" />
-                    </SelectTrigger>
+                    <SelectTrigger><SelectValue placeholder={t("school.selectLang")} /></SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="English">English</SelectItem>
-                      <SelectItem value="French">French</SelectItem>
-                      <SelectItem value="Spanish">Spanish</SelectItem>
-                      <SelectItem value="Portuguese">Portuguese</SelectItem>
-                      <SelectItem value="Swahili">Swahili</SelectItem>
+                      <SelectItem value="English">{t("school.lang.en")}</SelectItem>
+                      <SelectItem value="French">{t("school.lang.fr")}</SelectItem>
+                      <SelectItem value="Spanish">{t("school.lang.es")}</SelectItem>
+                      <SelectItem value="Portuguese">{t("school.lang.pt")}</SelectItem>
+                      <SelectItem value="Swahili">{t("school.lang.sw")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="materials">Do you have computers/tablets? *</Label>
+                  <Label htmlFor="materials">{t("school.materials")}</Label>
                   <Select name="materials" required defaultValue="no">
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select option" />
-                    </SelectTrigger>
+                    <SelectTrigger><SelectValue placeholder={t("school.selectOpt")} /></SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="yes">Yes, we have devices</SelectItem>
-                      <SelectItem value="no">No, we need support</SelectItem>
-                      <SelectItem value="partial">Some, but need more</SelectItem>
+                      <SelectItem value="yes">{t("school.mat.yes")}</SelectItem>
+                      <SelectItem value="no">{t("school.mat.no")}</SelectItem>
+                      <SelectItem value="partial">{t("school.mat.partial")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="preferredDates">Preferred Training Dates *</Label>
-                  <Input id="preferredDates" required placeholder="e.g., January 2025" />
+                  <Label htmlFor="preferredDates">{t("school.preferredDates")}</Label>
+                  <Input id="preferredDates" name="preferredDates" required placeholder={t("school.preferredDatesPh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="contactName">Contact Person *</Label>
-                  <Input id="contactName" required placeholder="Full name" />
+                  <Label htmlFor="contactName">{t("school.contactName")}</Label>
+                  <Input id="contactName" name="contactName" required placeholder={t("school.contactNamePh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="contactEmail">Contact Email *</Label>
-                  <Input id="contactEmail" type="email" required placeholder="email@school.edu" />
+                  <Label htmlFor="contactEmail">{t("school.contactEmail")}</Label>
+                  <Input id="contactEmail" name="contactEmail" type="email" required placeholder={t("school.contactEmailPh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="contactPhone">Contact Phone</Label>
-                  <Input id="contactPhone" type="tel" placeholder="+123 456 7890" />
+                  <Label htmlFor="contactPhone">{t("school.contactPhone")}</Label>
+                  <Input id="contactPhone" name="contactPhone" type="tel" placeholder={t("school.contactPhonePh")} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="additionalInfo">Additional Information</Label>
-                  <Textarea 
-                    id="additionalInfo" 
-                    placeholder="Tell us more about your needs, challenges, or expectations..."
-                    rows={4}
-                  />
+                  <Label htmlFor="additionalInfo">{t("school.additional")}</Label>
+                  <Textarea id="additionalInfo" name="additionalInfo" placeholder={t("school.additionalPh")} rows={4} />
                 </div>
 
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? "Submitting..." : "Submit Application"}
+                  {isSubmitting ? t("school.submitting") : t("school.submit")}
                 </Button>
               </form>
             </CardContent>
