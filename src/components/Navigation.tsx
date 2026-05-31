@@ -27,7 +27,7 @@ export const Navigation = () => {
             <Link to="/form/embajador" className="text-sm font-medium text-foreground hover:text-primary transition-smooth">
               Become Ambassador
             </Link>
-            <Link to="/admin">
+            <Link to="/auth">
               <Button variant="outline" size="sm">
                 Admin
               </Button>
@@ -68,7 +68,7 @@ export const Navigation = () => {
             >
               Become Ambassador
             </Link>
-            <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
+            <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
               <Button variant="outline" size="sm" className="w-full">
                 Admin
               </Button>
