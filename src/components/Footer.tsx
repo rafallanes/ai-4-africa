@@ -1,6 +1,8 @@
 import { GraduationCap, Heart } from "lucide-react";
+import { useT } from "@/i18n/LanguageProvider";
 
 export const Footer = () => {
+  const { t } = useT();
   return (
     <footer className="border-t bg-muted/50 py-8 mt-16">
       <div className="container mx-auto px-4">
@@ -9,14 +11,12 @@ export const Footer = () => {
             <GraduationCap className="h-6 w-6 text-primary" />
             <span className="font-semibold text-gradient">AI 4 Africa</span>
           </div>
-          
+
           <p className="text-sm text-muted-foreground flex items-center gap-2">
-            Made with <Heart className="h-4 w-4 text-destructive fill-destructive" /> for educational impact in Africa
+            {t("footer.tagline")} <Heart className="h-4 w-4 text-destructive fill-destructive" /> {t("footer.taglineEnd")}
           </p>
-          
-          <p className="text-sm text-muted-foreground">
-            © 2025 AI 4 Africa. All rights reserved.
-          </p>
+
+          <p className="text-sm text-muted-foreground">{t("footer.rights")}</p>
         </div>
       </div>
     </footer>

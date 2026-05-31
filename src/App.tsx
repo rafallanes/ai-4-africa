@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 import Index from "./pages/Index";
 import SchoolForm from "./pages/SchoolForm";
 import AmbassadorForm from "./pages/AmbassadorForm";
@@ -22,19 +23,21 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/form/escuela" element={<SchoolForm />} />
-            <Route path="/form/embajador" element={<AmbassadorForm />} />
-            <Route path="/proyectos" element={<Projects />} />
-            <Route path="/proyectos/:id" element={<ProjectDetail />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AuthProvider>
+        <LanguageProvider>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/form/escuela" element={<SchoolForm />} />
+              <Route path="/form/embajador" element={<AmbassadorForm />} />
+              <Route path="/proyectos" element={<Projects />} />
+              <Route path="/proyectos/:id" element={<ProjectDetail />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthProvider>
+        </LanguageProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

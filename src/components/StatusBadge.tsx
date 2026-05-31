@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Rocket, Search } from "lucide-react";
+import { useT } from "@/i18n/LanguageProvider";
 
 type ProjectStatus = "buscando" | "apadrinado" | "completado";
 
@@ -8,31 +9,17 @@ interface StatusBadgeProps {
 }
 
 export const StatusBadge = ({ status }: StatusBadgeProps) => {
-  const statusConfig = {
-    buscando: {
-      label: "🔍 Buscando patrocinio",
-      variant: "warning" as const,
-      icon: Search,
-    },
-    apadrinado: {
-      label: "🌱 Listo para despegar",
-      variant: "default" as const,
-      icon: Rocket,
-    },
-    completado: {
-      label: "🎯 Impacto cumplido",
-      variant: "success" as const,
-      icon: CheckCircle2,
-    },
-  };
-
-  const config = statusConfig[status];
-  const Icon = config.icon;
-
+  const { t } = useT();
+  const cfg = {
+    buscando: { variant: "warning" as const, icon: Search },
+    apadrinado: { variant: "default" as const, icon: Rocket },
+    completado: { variant: "success" as const, icon: CheckCircle2 },
+  }[status];
+  const Icon = cfg.icon;
   return (
-    <Badge variant={config.variant} className="gap-1.5">
+    <Badge variant={cfg.variant} className="gap-1.5">
       <Icon className="h-3.5 w-3.5" />
-      {config.label}
+      {t(`status.${status}`)}
     </Badge>
   );
 };
