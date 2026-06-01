@@ -31,6 +31,19 @@ export const translations: Record<Lang, Dict> = {
     "index.stats.schools": "Schools Registered",
     "index.stats.ambassadors": "Active Ambassadors",
     "index.stats.students": "Students Impacted",
+
+    // Roles
+    "index.roles.title": "How can we help you?",
+    "index.roles.school.name": "I'm a School",
+    "index.roles.school.desc": "Register your school and bring AI education to your students",
+    "index.roles.school.cta": "Register School",
+    "index.roles.ambassador.name": "I'm an Ambassador",
+    "index.roles.ambassador.desc": "Volunteer your expertise and train children who need it most",
+    "index.roles.ambassador.cta": "Apply Now",
+    "index.roles.company.name": "I'm a Company",
+    "index.roles.company.desc": "Sponsor a project and create real, measurable impact",
+    "index.roles.company.cta": "View Projects",
+
     "index.how.title": "How It Works",
     "index.how.s1.title": "1. Schools Register",
     "index.how.s1.body": "Schools share their needs, student count, and preferred training dates to join our platform.",
