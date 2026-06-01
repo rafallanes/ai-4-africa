@@ -15,7 +15,7 @@ export const Navigation = () => {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2 transition-smooth hover:opacity-80">
             <GraduationCap className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-gradient">AI 4 Africa</span>
+            <span className="text-xl font-bold text-gradient">Oportunia</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">

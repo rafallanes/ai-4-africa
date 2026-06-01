@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <GraduationCap className="h-6 w-6 text-primary" />
-            <span className="font-semibold text-gradient">AI 4 Africa</span>
+            <span className="font-semibold text-gradient">Oportunia</span>
           </div>
 
           <p className="text-sm text-muted-foreground flex items-center gap-2">
