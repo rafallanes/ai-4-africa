@@ -14,8 +14,8 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
-        title="AI 4 Africa — AI Education for African Schools"
-        description="Connect African schools with volunteer ambassadors and corporate sponsors to bring hands-on AI education to every classroom."
+        title="Oportunia — AI Education for Every Child at Risk"
+        description="Connecting schools, volunteer ambassadors, and companies to bring hands-on AI education to children facing social exclusion — in Spain, Africa and beyond."
         path="/"
       />
       <Navigation />
