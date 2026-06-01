@@ -25,7 +25,7 @@ const Projects = () => {
   useEffect(() => {
     supabase
       .from("projects")
-      .select("*, schools(*), ambassadors(*), companies:sponsoring_company_id(*)")
+      .select("*, schools(id,name,city,country,student_count,age_range,training_language,has_materials,preferred_dates,required_amount,validated,created_at,updated_at), ambassadors(id,name,country,expertise,motivation,languages,availability,validated,created_at,updated_at), companies:sponsoring_company_id(id,name,logo_url,commitment,created_at,updated_at)")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
         if (data) setProjects(data as any);
