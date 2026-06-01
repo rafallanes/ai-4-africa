@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { GraduationCap, Heart, Users, Target } from "lucide-react";
+import { GraduationCap, Heart, Users, Target, Building2 } from "lucide-react";
 import heroImage from "@/assets/hero-classroom.jpg";
 import { useT } from "@/i18n/LanguageProvider";
 
