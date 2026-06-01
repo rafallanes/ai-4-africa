@@ -9,7 +9,8 @@ import heroImage from "@/assets/hero-classroom.jpg";
 import { useT } from "@/i18n/LanguageProvider";
 
 const Index = () => {
-  const { t } = useT();
+  const { t, lang } = useT();
+  const fmt = new Intl.NumberFormat(lang === "en" ? "en-US" : lang === "fr" ? "fr-FR" : "es-ES");
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
