@@ -55,15 +55,15 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">{fmt.format(23)}</div>
+                <div className="text-4xl font-bold text-primary mb-2">{fmt.format(20)}+</div>
                 <div className="text-muted-foreground">{t("index.stats.schools")}</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">{fmt.format(5)}</div>
+                <div className="text-4xl font-bold text-primary mb-2">{fmt.format(5)}+</div>
                 <div className="text-muted-foreground">{t("index.stats.ambassadors")}</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">{fmt.format(1150)}</div>
+                <div className="text-4xl font-bold text-primary mb-2">{fmt.format(1200)}+</div>
                 <div className="text-muted-foreground">{t("index.stats.students")}</div>
               </div>
             </div>
