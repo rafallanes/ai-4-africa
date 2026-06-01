@@ -278,6 +278,19 @@ export const translations: Record<Lang, Dict> = {
     "index.stats.schools": "Écoles inscrites",
     "index.stats.ambassadors": "Ambassadeurs actifs",
     "index.stats.students": "Élèves impactés",
+
+    // Rôles
+    "index.roles.title": "Comment pouvons-nous vous aider ?",
+    "index.roles.school.name": "Je suis une école",
+    "index.roles.school.desc": "Inscrivez votre école et apportez l'éducation à l'IA à vos élèves",
+    "index.roles.school.cta": "Inscrire mon école",
+    "index.roles.ambassador.name": "Je suis ambassadeur",
+    "index.roles.ambassador.desc": "Partagez votre expertise et formez les enfants qui en ont le plus besoin",
+    "index.roles.ambassador.cta": "Postuler",
+    "index.roles.company.name": "Je suis une entreprise",
+    "index.roles.company.desc": "Financez un projet et créez un impact réel et mesurable",
+    "index.roles.company.cta": "Voir les projets",
+
     "index.how.title": "Comment ça marche",
     "index.how.s1.title": "1. Les écoles s'inscrivent",
     "index.how.s1.body": "Les écoles partagent leurs besoins, le nombre d'élèves et les dates préférées pour rejoindre notre plateforme.",
@@ -503,6 +516,19 @@ export const translations: Record<Lang, Dict> = {
     "index.stats.schools": "Escuelas registradas",
     "index.stats.ambassadors": "Embajadores activos",
     "index.stats.students": "Estudiantes impactados",
+
+    // Roles
+    "index.roles.title": "¿Cómo podemos ayudarte?",
+    "index.roles.school.name": "Soy una escuela",
+    "index.roles.school.desc": "Registra tu centro y lleva la educación con IA a tus estudiantes",
+    "index.roles.school.cta": "Registrar escuela",
+    "index.roles.ambassador.name": "Soy embajador/a",
+    "index.roles.ambassador.desc": "Comparte tu experiencia y forma a los niños que más lo necesitan",
+    "index.roles.ambassador.cta": "Solicitar",
+    "index.roles.company.name": "Soy empresa",
+    "index.roles.company.desc": "Patrocina un proyecto y genera un impacto real y medible",
+    "index.roles.company.cta": "Ver proyectos",
+
     "index.how.title": "Cómo funciona",
     "index.how.s1.title": "1. Las escuelas se registran",
     "index.how.s1.body": "Las escuelas comparten sus necesidades, número de estudiantes y fechas preferidas para unirse a la plataforma.",
