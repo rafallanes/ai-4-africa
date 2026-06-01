@@ -20,12 +20,12 @@ export const translations: Record<Lang, Dict> = {
 
     // Footer
     "footer.tagline": "Made with",
-    "footer.taglineEnd": "for educational impact in Africa",
-    "footer.rights": "© 2025 AI 4 Africa. All rights reserved.",
+    "footer.taglineEnd": "for children at risk of social exclusion",
+    "footer.rights": "© 2025 Oportunia. All rights reserved.",
 
     // Index
-    "index.hero.title": "Empowering African Education with AI",
-    "index.hero.subtitle": "Connecting schools, volunteer ambassadors, and companies to bring AI education to every African classroom",
+    "index.hero.title": "AI Education for Every Child at Risk",
+    "index.hero.subtitle": "Connecting schools, volunteer ambassadors, and companies to bring hands-on AI education to children facing social exclusion — in Spain, Africa and beyond",
     "index.hero.ctaSchool": "Register Your School",
     "index.hero.ctaAmbassador": "Become an Ambassador",
     "index.stats.schools": "Schools Registered",
@@ -33,7 +33,7 @@ export const translations: Record<Lang, Dict> = {
     "index.stats.students": "Students Impacted",
     "index.how.title": "How It Works",
     "index.how.s1.title": "1. Schools Register",
-    "index.how.s1.body": "African schools share their needs, student count, and preferred training dates to join our platform.",
+    "index.how.s1.body": "Schools share their needs, student count, and preferred training dates to join our platform.",
     "index.how.s2.title": "2. Ambassadors Apply",
     "index.how.s2.body": "Validated volunteers review schools and apply to deliver AI training programs.",
     "index.how.s3.title": "3. Companies Sponsor",
@@ -139,7 +139,7 @@ export const translations: Record<Lang, Dict> = {
 
     // Ambassador Form
     "amb.title": "Become an Ambassador",
-    "amb.subtitle": "Share your AI expertise and make a lasting impact in Africa",
+    "amb.subtitle": "Share your AI expertise and make a lasting impact for children who need it most",
     "amb.cardTitle": "Ambassador Application",
     "amb.cardDesc": "Tell us about yourself and why you want to volunteer",
     "amb.fullName": "Full Name *",
@@ -156,7 +156,7 @@ export const translations: Record<Lang, Dict> = {
     "amb.expertise": "Your AI/Tech Expertise *",
     "amb.expertisePh": "Briefly describe your background in AI, machine learning, or technology...",
     "amb.motivation": "Why do you want to be an ambassador? *",
-    "amb.motivationPh": "Share your motivation for bringing AI education to Africa...",
+    "amb.motivationPh": "Share your motivation for bringing AI education to children at risk of social exclusion...",
     "amb.availability": "Availability *",
     "amb.availabilityPh": "When are you available? How much time can you commit? (e.g., 2 weeks in March 2025)",
     "amb.languages": "Languages You Speak *",
