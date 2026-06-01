@@ -61,14 +61,16 @@ const Index = () => {
                 { to: "/proyectos", icon: Building2, name: t("index.roles.company.name"), desc: t("index.roles.company.desc"), cta: t("index.roles.company.cta") },
               ].map(({ to, icon: Icon, name, desc, cta }) => (
                 <Link key={to} to={to} className="group block">
-                  <Card className="h-full shadow-impact transition-all hover:-translate-y-1 hover:shadow-lg">
-                    <CardContent className="pt-8 pb-8 text-center">
+                  <Card className="h-full flex flex-col shadow-impact transition-all hover:-translate-y-1 hover:shadow-lg">
+                    <CardContent className="pt-8 pb-8 text-center flex flex-col h-full">
                       <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition-colors">
                         <Icon className="h-8 w-8 text-primary" />
                       </div>
                       <h3 className="text-2xl font-bold mb-3">{name}</h3>
                       <p className="text-muted-foreground mb-6">{desc}</p>
-                      <Button className="shadow-sm">{cta}</Button>
+                      <div className="mt-auto">
+                        <Button className="shadow-sm">{cta}</Button>
+                      </div>
                     </CardContent>
                   </Card>
                 </Link>
