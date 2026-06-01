@@ -60,7 +60,7 @@ const Index = () => {
                 { to: "/form/embajador", icon: Users, name: t("index.roles.ambassador.name"), desc: t("index.roles.ambassador.desc"), cta: t("index.roles.ambassador.cta") },
                 { to: "/proyectos", icon: Building2, name: t("index.roles.company.name"), desc: t("index.roles.company.desc"), cta: t("index.roles.company.cta") },
               ].map(({ to, icon: Icon, name, desc, cta }) => (
-                <Link key={to} to={to} className="group block">
+                <Link key={to} to={to} className="group block h-full">
                   <Card className="h-full flex flex-col shadow-impact transition-all hover:-translate-y-1 hover:shadow-lg">
                     <CardContent className="pt-8 pb-8 text-center flex flex-col h-full">
                       <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition-colors">
